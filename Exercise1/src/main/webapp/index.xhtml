@@ -1,0 +1,40 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+        <title>Numberle Game</title>
+        <h:outputStylesheet name="default.css"/>
+    </h:head>
+
+    <h:body>
+        <ui:composition template="/templates/basic_template.xhtml">
+            
+            <ui:define name="content">
+                <div class="submit-form">
+                    <h:form>
+                        <h:inputText value="#{numberleBean.userGuess}" maxlength="6" size="6" class="input-guess"/>
+                        <h:commandButton value="Submit Guess" action="#{numberleBean.submitGuess}" class="submit-button"/>
+                    </h:form>
+                </div>
+                
+                <div class="attempts">
+                    <h:outputText value="Attempts left: #{numberleBean.attempts}" style="color: #333; font-size: 18px;"/>
+                </div>
+
+                <div class="feedback">
+                    <h:outputText value="Your guesses:" style="color: #333; font-size: 18px;"/>
+                    <ui:repeat value="#{numberleBean.feedback}" var="message">
+                        <h:outputText escape="false" value="#{message}" style="display:block; font-size: 1.2em;"/>
+                    </ui:repeat>
+                </div>
+
+                <h:form>
+                    <h:commandButton value="Reset Game" action="#{numberleBean.resetGame}" class="submit-button"/>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+    </h:body>
+</html>
